@@ -9,19 +9,17 @@ const server = http.createServer((req, res) => {
   console.log("We got the request");
   console.log(`URL is ${PathName}`);
 
-  if (PathName == "/TaraBapaNiWebsiteChhe") {
-    res.end("<h1>Ha Mara Bapa Ni Website 6.</h1>");
-  } else if (PathName == "/Bhaiband" || PathName == "/bhaiband") {
-    res.end("<h1>Su K Bhaiband</h1>");
-  } else if (PathName == "/") {
-    res.end("Kaik to bol L...");
+  if (PathName == "/Overview" || PathName == "/overview" || PathName == "/") {
+    res.end("<h1>Welcome To Overview page</h1>");
+  } else if (PathName == "/Product" || PathName == "/product") {
+    res.end("<h1>Welcome To Product page</h1>");
   } else if (PathName == "/API") {
     // console.log("Caame Here");
     res.writeHead(200, {
       "Content-Type": "application/json",
       "Mera-Man": "Kyu Tujhe chahe",
     });
-    res.end(API_Data);
+    res.end("<h1>You Got all Data Below</h1>" + API_Data);
   } else {
     res.writeHead(404, {
       "Content-Type": "text/html; charset=utf",
@@ -29,13 +27,8 @@ const server = http.createServer((req, res) => {
     });
     res.end("GM");
   }
-  console.log(
-    "======================================================================"
-  );
-  // res.end("Thanks for visit!");
 });
 
 server.listen(3000, "127.0.0.1", () => {
   console.log("We are Waiting!");
-  // console.log("here");
 });
