@@ -30,5 +30,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(3000, "127.0.0.1", () => {
-  console.log("We are Waiting! ");
+  console.log("We are Waiting!");
 });
