@@ -39,3 +39,5 @@ server.listen(3000, "127.0.0.1", () => {
   console.log("We are Waiting!");
   // console.log("here");
 });
+
+console.log("Done");
