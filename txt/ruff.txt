@@ -1,0 +1,16 @@
+const fs = require("fs");
+console.log("started!")
+const data = fs.readFileSync("./txt/start.txt", 'utf8');
+console.log(data);
+let data1 = null;
+try{
+    data1 = fs.readFileSync("./txt/outputt.txt", 'utf8');
+}
+catch(err){
+console.log("here");
+}
+ 
+fs.writeFileSync("./txt/output.txt", `${data1}\n${data}\nWritten by function`);
+console.log("Outside Read!");
+
+====================================================================================================================
