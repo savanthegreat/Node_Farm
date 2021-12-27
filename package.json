@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "run": "npx nodemon app.js"
+    "start": "npx nodemon app.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
