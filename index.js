@@ -43,10 +43,10 @@ const OverviewOutputPage = OverviewPage.replace(/{%PRODUCT_CARDS%}/, CardsHtml);
 
 // Server
 const server = http.createServer((req, res) => {
-  const PathName = req.url;
+  const IdinUrl = url.parse(req.url, true).query["id"];
+  const PathName = url.parse(req.url, true).pathname;
   console.log("We got the request");
   console.log(`URL is ${PathName}`);
-
   // Overview Page
   if (PathName == "/Overview" || PathName == "/overview" || PathName == "/") {
     res.end(OverviewOutputPage);
@@ -57,7 +57,10 @@ const server = http.createServer((req, res) => {
 
   // Product Page
   else if (PathName == "/Product" || PathName == "/product") {
-    res.end(ProductPage);
+    console.log(API_Data_Object[IdinUrl]);
+    const ProductData = API_Data_Object[IdinUrl];
+    const output = ReplaceTemplate(ProductPage, ProductData);
+    res.end(output);
     res.writeHead(201, {
       "Content-Type": "text/html; charset=utf",
     });
