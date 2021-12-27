@@ -3,23 +3,9 @@ const fs = require("fs");
 const http = require("http");
 const url = require("url");
 
+const ReplaceTemplate = require("./modules/ReplaceTemplate");
+
 // Top Level Code
-const ReplaceTemplate = (temp, product) => {
-  let output = temp.replace(/{%PRODUCTNAME%}/g, product.productName);
-  output = output.replace(/{%IMAGE%}/g, product.image);
-  output = output.replace(/{%ID%}/g, product.id);
-  output = output.replace(/{%FROM%}/g, product.from);
-  output = output.replace(/{%NUTRIENTS%}/g, product.nutrients);
-  output = output.replace(/{%QUANTITY%}/g, product.quantity);
-  output = output.replace(/{%PRICE%}/g, product.price);
-  output = output.replace(/{%DESCRIPTION%}/g, product.description);
-
-  if (!product.organic) {
-    output = output.replace(/{%NOT_ORGANIC%}/g, "not-organic");
-  }
-  return output;
-};
-
 const API_Data = fs.readFileSync(`${__dirname}/dev-data/data.json`, "utf8");
 const API_Data_Object = JSON.parse(API_Data);
 const OverviewPage = fs.readFileSync(
@@ -57,7 +43,6 @@ const server = http.createServer((req, res) => {
 
   // Product Page
   else if (PathName == "/Product" || PathName == "/product") {
-    console.log(API_Data_Object[IdinUrl]);
     const ProductData = API_Data_Object[IdinUrl];
     const output = ReplaceTemplate(ProductPage, ProductData);
     res.end(output);
